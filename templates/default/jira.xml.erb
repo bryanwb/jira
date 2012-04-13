@@ -1,0 +1,16 @@
+<Context path="/jira" debug="0" useHttpOnly="true">
+
+  <Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"
+  factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>
+  
+
+  <Resource name="jdbc/JiraDS" auth="Container"
+            type="javax.sql.DataSource"
+            username="<%= node['jira']['jdbc']['username'] %>"
+            password="<%= @password %>"
+            driverClassName="<%= node['jira']['jdbc']['driver'] %>"
+            url="<%= @jdbc_url %>"
+            maxActive="20"
+            validationQuery="select 1"
+            />
+</Context>

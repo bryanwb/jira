@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<jira-database-config>
+  <name>defaultDS</name>
+  <delegator-name>default</delegator-name>
+  <database-type><%= node['jira']['jdbc']['type'] %></database-type>
+  <schema-name><%= node['jira']['jdbc']['schema'] %></schema-name>
+  <jdbc-datasource>
+    <url><%= @jdbc_url %></url>
+    <driver-class><%= node['jira']['jdbc']['driver'] %></driver-class>
+    <username><%= node['jira']['jdbc']['username'] %></username>
+    <password><%= @password %></password>
+    <pool-size>15</pool-size>
+    <validation-query>select 1</validation-query>
+  </jdbc-datasource>
+</jira-database-config>
