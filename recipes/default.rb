@@ -26,6 +26,10 @@ include_recipe "maven"
 jira_user = node['jira']['user']
 jira_tarball = node['jira']['war_url'].split('/')[-1]
 
+user jira_user do
+  supports :manage_home => true
+end
+
 # get passwd
 bag, item = node['jira']['passwd_data_bag'].split('/')
 password = Chef::EncryptedDataBagItem.load(bag, item)['passwd']
@@ -50,6 +54,7 @@ maven "mysql-connector-java" do
   owner jira_user
   dest  "#{t.base}/lib"
 end
+
 
 remote_file "#{Chef::Config[:file_cache_path]}/#{jira_tarball}" do
   source node['jira']['war_url']
@@ -79,10 +84,14 @@ remote_file "balsamiq" do
   source node['jira']['balsamiq_url']
   checksum node['jira']['balsamiq_checksum']
   path "#{t.base}/webapps/jira/WEB-INF/lib/balsamiq.jar"
-   mode 0755
-   owner jira_user
- end
+  mode 0755
+  owner jira_user
+end
 
+directory "/home/jira/plugins/installed-plugins" do
+  recursive true
+  owner jira_user
+end
 
 %w{ bonfire bamboo calendar importers }.each do |plugin|
   remote_file plugin do
@@ -95,12 +104,13 @@ remote_file "balsamiq" do
 end
 
 
-ark_dump "additional_jars" do
+ark "additional_jars" do
   url node['jira']['jars_url']
   path  "#{t.base}/webapps/jira/WEB-INF/lib"
   owner jira_user
-  creates "commons-logging-1.1.1.jar"
+  creates "xapool-1.3.1.jar"
   checksum node['jira']['jars_checksum']
+  action :dump
 end
 
 template "jira properties" do
