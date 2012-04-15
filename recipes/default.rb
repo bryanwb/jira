@@ -49,7 +49,7 @@ end
 
 # get mysql connector
 maven "mysql-connector-java" do
-  groupId "mysql"
+  group_id "mysql"
   version "5.1.18"
   owner jira_user
   dest  "#{t.base}/lib"
