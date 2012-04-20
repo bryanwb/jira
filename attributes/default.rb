@@ -23,7 +23,8 @@ default['jira']['user'] = "jira"
 default['jira']['jvm_opts'] = [
                                "-Dorg.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true",
                                "-Dmail.mime.decodeparameters=true",
-                               "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=256m"
+                               "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=256m",
+                               "-XX:+UseConcMarkSweepGC"
                               ]
 
 default['jira']['passwd_data_bag'] = 'secret/jira_passwd'
