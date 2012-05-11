@@ -80,13 +80,13 @@ ruby_block "move jira war into place" do
 end
 
 # GET ALL THE PLUGINS
-remote_file "balsamiq" do
-  source node['jira']['balsamiq_url']
-  checksum node['jira']['balsamiq_checksum']
-  path "#{t.base}/webapps/jira/WEB-INF/lib/balsamiq.jar"
-  mode 0755
-  owner jira_user
-end
+# remote_file "balsamiq" do
+#   source node['jira']['balsamiq_url']
+#   checksum node['jira']['balsamiq_checksum']
+#   path "#{t.base}/webapps/jira/WEB-INF/lib/balsamiq.jar"
+#   mode 0755
+#   owner jira_user
+# end
 
 directory "/home/jira/plugins/installed-plugins" do
   recursive true

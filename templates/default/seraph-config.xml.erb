@@ -34,7 +34,7 @@
                  -->
             <param-name>logout.url</param-name>
             <!-- <param-value>/secure/Logout!default.jspa</param-value> -->
-	    <param-value><%= node['jira']['auth']['casServerUrlPrefix']%>/logout?service=<%= node['jira']['auth']['serverName'] %>/jira</param-value>
+	    <param-value><%= node['jira']['auth']['casServerUrlPrefix']%>/logout?service=<%= node['jira']['auth']['serverUrlPrefix'] %>/jira</param-value>
             <!--<param-value>http://sso.mycompany.com/logout</param-value>-->
         </init-param>
         <!-- The key that the original URL is stored with in the session -->
